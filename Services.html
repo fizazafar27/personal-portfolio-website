@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services - Fiza Zafar</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome v6 for Official Meta Icon support -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary-cyan: #00bcd4;
+      --dark-bg: #000000;
+      --light-text: #ffffff;
+      --grey-text: #b0b0b0;
+      --card-bg: rgba(255, 255, 255, 0.02);
+      --card-border: rgba(255, 255, 255, 0.05);
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       SIMPLE & PROFESSIONAL NAVBAR STYLING
+       ========================================== */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 0;
+      font-family: 'Inter', sans-serif; 
+    }
+    
+    .navbar-brand { 
+      font-weight: 600; 
+      font-size: 1.25rem; 
+      letter-spacing: -0.3px;
+      color: var(--primary-cyan) !important; 
+    }
+    
+    .nav-link { 
+      color: var(--grey-text) !important; 
+      margin: 0 12px; 
+      font-size: 0.9rem; 
+      font-weight: 500;    
+      letter-spacing: -0.1px;
+      transition: color 0.25s ease; 
+    }
+    
+    .nav-link:hover, .nav-link.active { 
+      color: var(--primary-cyan) !important; 
+    }
+
+    /* ==========================================
+       SERVICES HERO & SECTION STYLING
+       ========================================== */
+    .services-hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+    
+    .services-hero h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    
+    .services-hero h1 span {
+      color: var(--primary-cyan);
+    }
+    
+    .services-hero p {
+      color: var(--grey-text);
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .services-grid-section {
+      padding: 40px 0 120px;
+    }
+
+    /* Premium Service Cards */
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 30px;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-card:hover {
+      background: rgba(0, 188, 212, 0.02);
+      border-color: rgba(0, 188, 212, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 188, 212, 0.05);
+    }
+
+    .service-icon-box {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 188, 212, 0.06);
+      border: 1px solid rgba(0, 188, 212, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-cyan);
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon-box {
+      background: var(--primary-cyan);
+      color: #000000;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: -0.3px;
+      color: #ffffff;
+    }
+
+    .service-card p {
+      color: var(--grey-text);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ==========================================
+       PREMIUM MATCHING FOOTER STYLE
+       ========================================== */
+    #main-footer {
+      background-color: #030303; 
+      padding: 90px 0 35px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04); 
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-brand-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .footer-brand-title span { color: var(--primary-cyan); }
+    .footer-brand-desc {
+      color: #888888;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 380px;
+    }
+    
+    /* Social Grid Boxes */
+    .footer-social-grid { display: flex; gap: 12px; }
+    .social-box {
+      width: 44px; height: 44px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .social-box:hover {
+      background: rgba(0, 188, 212, 0.08);
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+      transform: translateY(-3px);
+    }
+
+    /* Section Headers */
+    .footer-section-title {
+      color: var(--primary-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Pulse Dot System */
+    .status-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #00ffaa;
+      background: rgba(0, 255, 170, 0.06);
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      background-color: #00ffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ffaa;
+      animation: pulse-dot 1.8s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #00ffaa; }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    /* Sitemap link lists */
+    .footer-nav-list { list-style: none; padding: 0; margin: 0; }
+    .footer-nav-list li { margin-bottom: 16px; }
+    .footer-nav-list a {
+      color: #999999; text-decoration: none;
+      font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .footer-nav-list a i {
+      font-size: 0.75rem; color: var(--primary-cyan);
+      transition: transform 0.25s ease;
+    }
+    .footer-nav-list a:hover { color: #ffffff; }
+    .footer-nav-list a:hover i { transform: translateX(3px); }
+
+    /* Contact Details Grid Layout */
+    .contact-item-card { display: flex; gap: 15px; margin-bottom: 24px; align-items: flex-start; }
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-cyan); flex-shrink: 0;
+    }
+    .contact-card-info h5 { margin: 0 0 3px 0; color: #ffffff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-card-info a, .contact-card-info span { color: #999999; text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+    .contact-card-info a:hover { color: var(--primary-cyan); }
+
+    /* Modern Form Newsletter Widget */
+    .newsletter-widget-box {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 14px; padding: 22px;
+    }
+    .newsletter-widget-box .form-control {
+      background: #0a0a0a !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;
+    }
+    .newsletter-widget-box .form-control::placeholder { color: #555555; }
+    .newsletter-widget-box .form-control:focus {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15) !important;
+    }
+    .newsletter-widget-box .btn-subscribe {
+      background: var(--primary-cyan); color: #000000;
+      width: 100%; border: none; padding: 12px; font-weight: 600;
+      border-radius: 8px; font-size: 0.95rem; margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+    .newsletter-widget-box .btn-subscribe:hover {
+      background: #0097a7;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-copyright-row {
+      text-align: center; margin-top: 70px; padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      color: #555555; font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       EXACT MATCHING NAVBAR
+       ========================================== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fiza Zafar</a>
+        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="Services.html" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="Projects.html" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==========================================
+       CREATIVE SERVICES HERO HEADER
+       ========================================== -->
+  <section class="services-hero" data-aos="fade-down" data-aos-duration="1000">
+    <div class="container">
+      <h1>My Professional <span>Services</span></h1>
+      <p>As a Full Stack Developer & Digital Strategist, I specialize in creating high-performance web applications and high-converting marketing frameworks tailored to global business needs. I turn complex architecture into secure, beautiful, and functional experiences.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SERVICES GRID LAYOUT (EXACT NAMES + CREATIVE DESCRIPTIONS)
+       ========================================== -->
+  <section class="services-grid-section">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Service 1: Frontend Development -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-cubes"></i>
+            </div>
+            <h3>Frontend Development</h3>
+            <p>Architecting immersive, lightning-fast user interfaces using React, Next.js, and Tailwind CSS. Focused on pixel-perfection, structural clean code pipelines, and sleek micro-interactions that engage visitors instantly.</p>
+          </div>
+        </div>
+
+        <!-- Service 2: Backend Development -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <h3>Backend Development</h3>
+            <p>Engineering rock-solid server architectures, custom enterprise RESTful APIs, and bulletproof database ecosystems natively over Node.js and Express. Built strictly for heavy traffic scalabilities and ironclad runtime security.</p>
+          </div>
+        </div>
+
+        <!-- Service 3: Meta Ads Strategy -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fab fa-meta"></i> <!-- Official Meta Icon Added and Verified -->
+            </div>
+            <h3>Meta Ads Strategy</h3>
+            <p>Designing high-velocity paid acquisition campaigns across Facebook & Instagram. From Conversions API/Pixel setups to hyper-targeted lookalike audience structures, we build ad funnels engineered for maximum ROI.</p>
+          </div>
+        </div>
+
+        <!-- Service 4: Social Media Management -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Social Media Management</h3>
+            <p>Transforming stagnant profiles into highly-engaged social asset hubs. Handling premium organic content scheduling, advanced hashtag data loops, proactive continuous engagement, and clear analytics reports.</p>
+          </div>
+        </div>
+
+        <!-- Service 5: Graphic Designing -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-bezier-curve"></i>
+            </div>
+            <h3>Graphic Designing</h3>
+            <p>Sculpting bespoke brand identity kits, high-converting ad layouts, modern UI/UX mockups, and corporate vector artwork that aligns flawlessly with your marketing directives to capture immediate attention.</p>
+          </div>
+        </div>
+
+        <!-- Service 6: UI/UX Implementation -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+            <h3>UI/UX Implementation</h3>
+            <p>Converting creative Figma or Adobe XD layout models into clean front-end system realities. Zero layout compromises, fully optimized accessible semantic code, and seamless responsiveness across devices.</p>
+          </div>
+        </div>
+
+        <!-- Service 7: Maintenance & Support -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-screwdriver-wrench"></i>
+            </div>
+            <h3>Maintenance & Support</h3>
+            <p>Deploying continuous background script upgrades, instant bug-patches, automated security protocols, and version enhancements to keep your live production platforms at absolute peak operational health.</p>
+          </div>
+        </div>
+
+        <!-- Service 8: Performance Optimization -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-gauge-high"></i>
+            </div>
+            <h3>Performance Optimization</h3>
+            <p>Accelerating loading metrics to smash Core Web Vitals goals. Implementing structural asset compression, smart lazy rendering rules, clean minification tricks, and pristine technical SEO configurations.</p>
+          </div>
+        </div>
+
+        <!-- Service 9: Deployment & Hosting -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Deployment & Hosting</h3>
+            <p>Configuring automated deployment tracks onto hyper-fast edge servers like Vercel, Netlify, or Firebase. Complete with seamless production-ready Git version control branch architectures.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EXACT MATCHING DESIGN FOOTER INTEGRATED 
+       ========================================== -->
+  <footer id="main-footer">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        
+        <!-- Grid Col 1: Brand Info & Social -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="footer-brand-title">Fiza <span>Zafar</span></h2>
+          <p class="footer-brand-desc">Empowering brands with high-performance web solutions. I turn complex ideas into elegant, functional, and user-friendly digital experiences.</p>
+          <div class="footer-social-grid">
+            <a href="#" class="social-box" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/fiza-zafar-a31183315" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-box" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-box" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Grid Col 2: Fast Track Links (Sitemap) -->
+        <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+          <h3 class="footer-section-title">Sitemap</h3>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Me</a></li>
+            <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="Projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+            <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Grid Col 3: Direct Connect Cards + Realtime Indicator Badge -->
+        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          <h3 class="footer-section-title">
+            Connect 
+            <span class="status-badge"><span class="status-dot"></span>Available Remotely</span>
+          </h3>
+          
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-info">
+              <h5>Email</h5>
+              <a href="mailto:zafarfiza17@gmail.com">zafarfiza17@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-card-info">
+              <h5>Location</h5>
+              <span>Karachi, Pakistan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Col 4: Newsletter Box Module -->
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+          <h3 class="footer-section-title">Stay Updated</h3>
+          <div class="newsletter-widget-box">
+            <p class="text-secondary mb-3" style="font-size: 0.88rem; line-height: 1.5;">Subscribe to my newsletter for tech tips and project updates.</p>
+            <form action="#" onsubmit="event.preventDefault();">
+              <input type="email" class="form-control" placeholder="Email Address" required>
+              <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-copyright-row">
+        <p>&copy; <span id="current-year">2026</span> Fiza Zafar. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Smart Auto Active Link Evaluator
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+      link.classList.remove('active'); 
+      const linkHref = link.getAttribute('href');
+      
+      if (currentPath === linkHref) {
+        link.classList.add('active');
+      } 
+      else if ((currentPath === "" || currentPath === "index.html") && linkHref === "index.html") {
+        // Fallback
+      } else if (linkHref === "Services.html") {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

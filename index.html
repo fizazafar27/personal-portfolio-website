@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiza Zafar - Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary-cyan: #00bcd4;
+      --primary-cyan-glow: rgba(0, 188, 212, 0.15);
+      --dark-bg: #050505;
+      --bg-card: rgba(20, 20, 20, 0.6);
+      --bg-card-hover: rgba(30, 30, 30, 0.8);
+      --light-text: #ffffff;
+      --grey-text: #a0a0a0;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 75px; 
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--dark-bg); }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary-cyan); }
+
+    .highlight, .about-title span, .section-title span, .section-header h2 span {
+      color: var(--primary-cyan) !important;
+      text-shadow: 0 0 20px var(--primary-cyan-glow);
+    }
+
+    /* NAVBAR STYLING (Unchanged as requested) */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .navbar-brand { 
+      font-weight: 600; 
+      font-size: 1.25rem; 
+      letter-spacing: -0.3px;
+      color: var(--primary-cyan) !important; 
+    }
+    .nav-link { 
+      color: var(--grey-text) !important; 
+      margin: 0 12px; 
+      font-size: 0.9rem; 
+      font-weight: 500;    
+      transition: color 0.25s ease; 
+    }
+    .nav-link:hover, .nav-link.active { 
+      color: var(--primary-cyan) !important; 
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 100px 0;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(0, 188, 212, 0.08) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero h1 { 
+      font-size: 4rem; 
+      font-weight: 700; 
+      margin-bottom: 15px; 
+      letter-spacing: -1px;
+    }
+    .hero h2 { 
+      font-size: 2.2rem; 
+      min-height: 50px; 
+      color: var(--primary-cyan); 
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .hero p { 
+      color: var(--grey-text); 
+      max-width: 600px;
+      font-weight: 300;
+    }
+
+    /* PREMIUM BUTTONS */
+    .btn-primary {
+      background-color: var(--primary-cyan);
+      border-color: var(--primary-cyan);
+      color: #000; 
+      font-weight: 600; 
+      padding: 12px 30px; 
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background-color: #00e5ff; 
+      border-color: #00e5ff; 
+      color: #000;
+      transform: translateY(-4px); 
+      box-shadow: 0 10px 25px rgba(0, 188, 212, 0.4);
+    }
+    .btn-outline-primary {
+      border-color: rgba(0, 188, 212, 0.4); 
+      color: var(--primary-cyan);
+      font-weight: 600; 
+      padding: 12px 30px; 
+      border-radius: 8px;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+    .btn-outline-primary:hover {
+      background-color: var(--primary-cyan); 
+      border-color: var(--primary-cyan);
+      color: #000;
+      transform: translateY(-4px); 
+      box-shadow: 0 10px 25px rgba(0, 188, 212, 0.3);
+    }
+
+    /* Profile Morph Image Overlay */
+    .profile-circle {
+      border: 2px solid rgba(0, 188, 212, 0.3);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: morphing 8s infinite alternate ease-in-out;
+      width: 380px; 
+      height: 380px; 
+      object-fit: cover; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(0, 188, 212, 0.2);
+      transition: var(--transition);
+    }
+    .profile-circle:hover {
+      border-color: var(--primary-cyan);
+      box-shadow: 0 20px 50px rgba(0, 188, 212, 0.25);
+    }
+    @keyframes morphing {
+      0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+      50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+      100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+    }
+
+    /* ABOUT SECTION (Full-width Text Adjustment) */
+    .about-title { font-weight: 700; font-size: 2.8rem; margin-bottom: 25px; letter-spacing: -0.5px; }
+    
+    .about-skill-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 22px;
+      border-radius: 14px;
+      height: 100%;
+      transition: var(--transition);
+    }
+    .about-skill-box:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(0, 188, 212, 0.3);
+      transform: translateY(-4px);
+    }
+    .about-skill i { color: var(--primary-cyan); font-size: 1.4rem; margin-top: 3px; }
+    .about-skill h5 { margin-bottom: 8px; font-weight: 600; font-size: 1.1rem; color: #fff; }
+    .about-skill p { color: var(--grey-text); font-size: 0.9rem; margin-bottom: 0; }
+
+    /* SKILLS SECTION */
+    .skills-section { padding: 100px 0; background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%); }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+    .section-header h2 { font-weight: 700; font-size: 2.8rem; letter-spacing: -0.5px; }
+    .section-header p { color: var(--grey-text); font-size: 1.05rem; line-height: 1.7; margin-top: 15px; font-weight: 300; }
+    
+    .skill-card {
+      background: var(--bg-card); 
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px; 
+      padding: 40px 30px; 
+      transition: var(--transition); 
+      height: 100%;
+    }
+    .skill-card:hover {
+      transform: translateY(-10px); 
+      border-color: rgba(0, 188, 212, 0.4);
+      background: var(--bg-card-hover);
+      box-shadow: 0 20px 40px rgba(0, 188, 212, 0.1);
+    }
+    .skill-card .icon { 
+      font-size: 2.2rem; 
+      color: var(--primary-cyan); 
+      margin-bottom: 25px; 
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 188, 212, 0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .skill-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 25px; letter-spacing: -0.3px;}
+    .skills-list { display: flex; flex-direction: column; gap: 14px; }
+    .skill-item { display: flex; align-items: center; gap: 12px; color: #d0d0d0; font-size: 0.95rem; }
+    .skill-item i { color: var(--primary-cyan); font-size: 1rem; }
+
+    /* SOFTWARE EXPERTISE SECTION */
+    #software { padding: 100px 0; background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%); }
+    .section-title { font-weight: 700; font-size: 2.8rem; margin-bottom: 50px; text-align: center; letter-spacing: -0.5px;}
+    
+    .software-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); 
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .software-item {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 30px 15px;
+      border-radius: 16px;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .software-item:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(0, 188, 212, 0.4);
+      box-shadow: 0 15px 30px rgba(0, 188, 212, 0.1);
+    }
+    .software-item i { font-size: 2.5rem; transition: var(--transition); }
+    .software-item:hover i { transform: scale(1.1); }
+    .software-item h4 { font-size: 0.95rem; font-weight: 500; margin: 0; color: #fff; letter-spacing: 0.3px; }
+    
+    .color-ps { color: #31a8ff; text-shadow: 0 0 15px rgba(49, 168, 255, 0.3); } 
+    .color-figma { color: #f24e1e; text-shadow: 0 0 15px rgba(242, 78, 30, 0.3); } 
+    .color-canva { color: #00c4cc; text-shadow: 0 0 15px rgba(0, 196, 204, 0.3); }
+    .color-vscode { color: #007acc; text-shadow: 0 0 15px rgba(0, 122, 204, 0.3); } 
+    .color-github { color: #ffffff; } 
+    .color-vercel { color: #ffffff; }
+    .color-illustrator { color: #ff9a00; text-shadow: 0 0 15px rgba(255, 154, 0, 0.3); } 
+    .color-git { color: #f05032; text-shadow: 0 0 15px rgba(240, 80, 50, 0.3); }
+
+    .tools-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 45px; max-width: 800px; margin-left: auto; margin-right: auto;}
+    .tool-badge { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 8px 18px; border-radius: 30px; font-size: 0.88rem; color: var(--grey-text); font-weight: 500; transition: var(--transition); }
+    .tool-badge:hover { border-color: var(--primary-cyan); color: #fff; background: rgba(0, 188, 212, 0.05); transform: scale(1.05); }
+
+    /* CERTIFICATIONS SECTION */
+    .qualifications-section { padding: 100px 0; }
+    .certification-card {
+      background: var(--bg-card); 
+      border-radius: 20px; 
+      padding: 35px 30px; 
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.05); 
+      transition: var(--transition);
+      backdrop-filter: blur(12px);
+    }
+    .certification-card:hover { 
+      transform: translateY(-8px); 
+      border-color: rgba(0, 188, 212, 0.3); 
+      background: var(--bg-card-hover);
+      box-shadow: 0 15px 35px rgba(0, 188, 212, 0.08); 
+    }
+    .cert-icon { 
+      font-size: 2rem; 
+      color: var(--primary-cyan); 
+      margin-bottom: 20px; 
+      width: 50px; height: 50px; 
+      background: rgba(0, 188, 212, 0.06); 
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cert-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; color: #fff; letter-spacing: -0.2px; }
+    .issued-date { font-size: 0.85rem; color: var(--primary-cyan); margin-bottom: 15px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;}
+    .cert-description { color: var(--grey-text); font-size: 0.9rem; line-height: 1.6; }
+
+    /* FOOTER STYLING (Unchanged as requested) */
+    #main-footer {
+      background-color: #030303; 
+      padding: 90px 0 35px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04); 
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-brand-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .footer-brand-title span { color: var(--primary-cyan); }
+    .footer-brand-desc {
+      color: #888888;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 380px;
+    }
+    .footer-social-grid { display: flex; gap: 12px; }
+    .social-box {
+      width: 44px; height: 44px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .social-box:hover {
+      background: rgba(0, 188, 212, 0.08);
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+      transform: translateY(-3px);
+    }
+    .footer-section-title {
+      color: var(--primary-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .status-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #00ffaa;
+      background: rgba(0, 255, 170, 0.06);
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      background-color: #00ffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ffaa;
+      animation: pulse-dot 1.8s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #00ffaa; }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+    .footer-nav-list { list-style: none; padding: 0; margin: 0; }
+    .footer-nav-list li { margin-bottom: 16px; }
+    .footer-nav-list a {
+      color: #999999; text-decoration: none;
+      font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .footer-nav-list a i {
+      font-size: 0.75rem; color: var(--primary-cyan);
+      transition: transform 0.25s ease;
+    }
+    .footer-nav-list a:hover { color: #ffffff; }
+    .footer-nav-list a:hover i { transform: translateX(3px); }
+    .contact-item-card { display: flex; gap: 15px; margin-bottom: 24px; align-items: flex-start; }
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-cyan); flex-shrink: 0;
+    }
+    .contact-card-info h5 { margin: 0 0 3px 0; color: #ffffff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-card-info a, .contact-card-info span { color: #999999; text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+    .contact-card-info a:hover { color: var(--primary-cyan); }
+    .newsletter-widget-box {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 14px; padding: 22px;
+    }
+    .newsletter-widget-box .form-control {
+      background: #0a0a0a !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;
+    }
+    .newsletter-widget-box .form-control::placeholder { color: #555555; }
+    .newsletter-widget-box .form-control:focus {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15) !important;
+    }
+    .newsletter-widget-box .btn-subscribe {
+      background: var(--primary-cyan); color: #000000;
+      width: 100%; border: none; padding: 12px; font-weight: 600;
+      border-radius: 8px; font-size: 0.95rem; margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+    .newsletter-widget-box .btn-subscribe:hover {
+      background: #0097a7;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      transform: translateY(-2px);
+    }
+    .footer-copyright-row {
+      text-align: center; margin-top: 70px; padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      color: #555555; font-size: 0.85rem;
+    }
+
+    @media (max-width: 1200px) {
+      .software-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 992px) {
+      .software-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero { padding: 60px 0; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero .d-flex { justify-content: center; }
+    }
+    @media (max-width: 576px) {
+      .software-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero h2 { font-size: 1.8rem; }
+      .profile-circle { width: 280px; height: 280px; }
+      .section-header h2, .section-title, .about-title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fiza Zafar</a>
+        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="Services.html" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="Projects.html" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+          <h1>Hello, I'm <span class="highlight">Fiza Zafar</span></h1>
+          <h2><span id="typed"></span></h2>
+          <p class="mb-4 fs-5 text-secondary">"I design and develop modern, responsive, and results-driven websites that empower businesses to scale, attract clients globally, and achieve sustainable online growth."</p>
+          <div class="mt-4 d-flex flex-wrap gap-3">
+            <a href="Contact.html" class="btn btn-primary" data-aos="zoom-in" data-aos-delay="300">Let's Connect</a>
+            <a href="Fiza Zafar - CV.pdf" download="Fiza_Zafar_Resume.pdf" class="btn btn-outline-primary" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-download me-2"></i>Download My CV</a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1200">
+          <img src="img.png" alt="Fiza Zafar profile image" class="img-fluid profile-circle">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5">
+    <div class="container py-4">
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="about-title text-center"><span>About</span> Me</h2>
+          <p class="lead text-white text-center mb-4 fw-medium max-w-800 mx-auto">Web Developer & Designer with over 3+ years of experience crafting engaging and user-friendly digital experiences.</p>
+          <p class="text-secondary text-center mb-3 max-w-900 mx-auto">I am a web developer with over 3+ years of experience delivering user-centric digital solutions. I specialize in building modern, scalable web applications using cutting-edge technologies. With a strong foundation in both development and design, I effectively bridge the gap between aesthetics and functionality.</p>
+          <p class="text-secondary text-center mb-5 max-w-900 mx-auto">What distinguishes me is my ability to seamlessly integrate technical precision with visual appeal ensuring every project not only performs flawlessly but also provides an exceptional user experience.</p>
+          
+          <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="about-skill-box d-flex about-skill">
+                <div class="me-3"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <h5>Frontend Expertise</h5>
+                  <p>HTML, CSS, JavaScript, React, Bootstrap, Tailwind</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+              <div class="about-skill-box d-flex about-skill">
+                <div class="me-3"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <h5>Backend Skills</h5>
+                  <p>Node.js, Python, API Design, MySQL, PHP, Next.Js</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="about-skill-box d-flex about-skill">
+                <div class="me-3"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <h5>UI/UX Design</h5>
+                  <p>Figma, Adobe Suite</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+              <div class="about-skill-box d-flex about-skill">
+                <div class="me-3"><i class="fas fa-check-circle"></i></div>
+                <div>
+                  <h5>Database</h5>
+                  <p>SQL, MySQL, Oracle SQL</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+        <h2>My <span class="highlight">Skills</span></h2>
+        <p>With a strong command of both front-end and back-end technologies, I craft seamless digital experiences from start to finish.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+          <div class="skill-card">
+            <div class="icon"><i class="fas fa-code"></i></div>
+            <h3>Frontend</h3>
+            <div class="skills-list">
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> HTML5 & CSS3</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> JavaScript (ES6+)</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> TypeScript</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Bootstrap 5</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Tailwind CSS</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> React.js</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400" data-aos-duration="800">
+          <div class="skill-card">
+            <div class="icon"><i class="fas fa-paint-brush"></i></div>
+            <h3>Designing</h3>
+            <div class="skills-list">
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> UI/UX Design</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Figma</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Adobe Photoshop</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Adobe Illustrator</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Responsive Design</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Graphic Design</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="600" data-aos-duration="800">
+          <div class="skill-card">
+            <div class="icon"><i class="fas fa-server"></i></div>
+            <h3>Backend</h3>
+            <div class="skills-list">
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Node.js</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Python</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> MySQL</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> PHP</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> Next.Js</div>
+              <div class="skill-item"><i class="fa-solid fa-circle-check"></i> JavaScript / APIs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="software">
+    <div class="container text-center">
+      <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Software <span class="highlight">Expertise</span></h2>
+      
+      <div class="software-grid">
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
+          <i class="fas fa-code color-vscode"></i>
+          <h4>VS Code</h4>
+        </div>
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
+          <i class="fas fa-image color-ps"></i>
+          <h4>Photoshop</h4>
+        </div>
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
+          <i class="fas fa-bezier-curve color-illustrator"></i>
+          <h4>Illustrator</h4>
+        </div>
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="600">
+          <i class="fab fa-figma color-figma"></i>
+          <h4>Figma</h4>
+        </div>
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="600">
+          <i class="fas fa-palette color-canva"></i>
+          <h4>Canva</h4>
+        </div>
+        <div class="software-item" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="600">
+          <i class="fab fa-git-alt color-git"></i>
+          <h4>Git</h4>
+        </div>
+      </div>
+
+      <h5 class="mt-5 text-white fw-semibold" style="font-size: 1.05rem;" data-aos="fade-up" data-aos-delay="200">Additional Tools & Technologies</h5>
+      <div class="tools-badges" data-aos="fade-up" data-aos-delay="400">
+        <div class="tool-badge">Git / GitHub</div>
+        <div class="tool-badge">Figma</div>
+        <div class="tool-badge">Vercel</div>
+        <div class="tool-badge">Chrome DevTools</div>
+        <div class="tool-badge">Yarn</div>
+        <div class="tool-badge">RESTful APIs</div>
+        <div class="tool-badge">Postman</div>
+        <div class="tool-badge">Teams</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="qualifications-section">
+    <div class="container">
+      <h2 class="section-title text-center mb-5" data-aos="fade-up">My <span class="highlight">Certifications</span></h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+            <h4 class="cert-title">Web Development Course</h4>
+      
+            <p class="cert-description">Training in HTML, CSS, JavaScript, and frameworks to build modern responsive web applications.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fas fa-brain"></i></div>
+            <h4 class="cert-title">Generative AI Course</h4>
+            <p class="cert-description">Advanced insights into generative models, prompt engineering, and AI integration inside modern applications.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fas fa-desktop"></i></div>
+            <h4 class="cert-title">Basic Computer Course</h4>
+            <p class="cert-description">Successfully completed the Basic Computer Course, gaining essential skills in computer operations and web technologies.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fas fa-palette"></i></div>
+            <h4 class="cert-title">Graphic Designing Course</h4>
+            <p class="cert-description">Completed Graphic Designing training, mastering image editing, creative visuals, and modern design tools.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fas fa-language"></i></div>
+            <h4 class="cert-title">English Language Course</h4>
+            <p class="cert-description">Enhanced communication, grammar, and writing skills through a professional English Language course.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+          <div class="certification-card">
+            <div class="cert-icon"><i class="fab fa-python"></i></div>
+            <h4 class="cert-title">Advance Python Course</h4>
+            <p class="cert-description">Completed Coursera specialization in Advanced Python, focusing on OOP, data structures, and real-world scripting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typewriter Effect Script -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script>
+    var typed = new Typed('#typed', {
+      strings: ['Web Developer', 'UI/UX Designer', 'Creative Thinker'],
+      typeSpeed: 60,
+      backSpeed: 40,
+      loop: true
+    });
+  </script>
+
+  <!-- FOOTER SECTION (Unchanged as requested) -->
+  <footer id="main-footer">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="footer-brand-title">Fiza <span>Zafar</span></h2>
+          <p class="footer-brand-desc">Empowering brands with high-performance web solutions. I turn complex ideas into elegant, functional, and user-friendly digital experiences.</p>
+          <div class="footer-social-grid">
+            <a href="https://github.com/fizazafar27" class="social-box" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/fiza-zafar-a31183315" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+          <h3 class="footer-section-title">Sitemap</h3>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Me</a></li>
+            <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="Projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+            <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          <h3 class="footer-section-title">
+            Connect 
+            <span class="status-badge"><span class="status-dot"></span>Available Remotely</span>
+          </h3>
+          
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-info">
+              <h5>Email</h5>
+              <a href="mailto:zafarfiza17@gmail.com">zafarfiza17@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-card-info">
+              <h5>Location</h5>
+              <span>Pakistan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+          <h3 class="footer-section-title">Newsletter</h3>
+          <div class="newsletter-widget-box">
+            <p class="text-secondary small mb-3">Subscribe to get latest updates and web tech insights.</p>
+            <form action="#" method="POST" onsubmit="event.preventDefault();">
+              <input type="email" class="form-control" placeholder="Your email address" required>
+              <button type="submit" class="btn-subscribe">Subscribe Now</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-12 footer-copyright-row">
+          <p class="mb-0">&copy; 2026 Fiza Zafar. All Rights Reserved. Crafted with Passion.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true
+    });
+  </script>
+</body>
+</html>

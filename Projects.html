@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - Fiza Zafar</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary-cyan: #00bcd4;
+      --dark-bg: #000000;
+      --light-text: #ffffff;
+      --grey-text: #b0b0b0;
+      --card-bg: rgba(255, 255, 255, 0.02);
+      --card-border: rgba(255, 255, 255, 0.05);
+      --badge-frontend: rgba(0, 188, 212, 0.1);
+      --badge-meta: rgba(233, 30, 99, 0.1);
+      --meta-accent: #e91e63;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       NAVBAR STYLING
+       ========================================== */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 0;
+      font-family: 'Inter', sans-serif; 
+    }
+    
+    .navbar-brand { 
+      font-weight: 600; 
+      font-size: 1.25rem; 
+      letter-spacing: -0.3px;
+      color: var(--primary-cyan) !important; 
+    }
+    
+    .nav-link { 
+      color: var(--grey-text) !important; 
+      margin: 0 12px; 
+      font-size: 0.9rem; 
+      font-weight: 500;    
+      letter-spacing: -0.1px;
+      transition: color 0.25s ease; 
+    }
+    
+    .nav-link:hover, .nav-link.active { 
+      color: var(--primary-cyan) !important; 
+    }
+
+    /* ==========================================
+       PROJECTS HERO & FILTER SYSTEM
+       ========================================== */
+    .projects-hero {
+      padding: 180px 0 60px;
+    }
+    
+    .projects-hero h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    
+    .projects-hero h1 span {
+      color: var(--primary-cyan);
+    }
+
+    .hero-desc {
+      color: var(--grey-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+
+    /* Filter Buttons */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .btn-filter {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--grey-text);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-filter:hover, .btn-filter.active {
+      border-color: var(--primary-cyan);
+      color: #000000;
+      background: var(--primary-cyan);
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    }
+
+    /* ==========================================
+       PROJECT CARDS GRID
+       ========================================== */
+    .projects-grid {
+      padding-bottom: 120px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 188, 212, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Project Visual Placeholder */
+    .project-visual {
+      height: 220px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .project-card:hover .project-visual::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 188, 212, 0.03);
+    }
+
+    .project-icon-glow {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    .project-card:hover .project-icon-glow {
+      color: var(--primary-cyan);
+      transform: scale(1.1);
+      text-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+    }
+
+    /* Project Info Content */
+    .project-content {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      width: fit-content;
+    }
+
+    .badge-fe {
+      background: var(--badge-frontend);
+      color: var(--primary-cyan);
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    .badge-meta {
+      background: var(--badge-meta);
+      color: var(--meta-accent);
+      border: 1px solid rgba(233, 30, 99, 0.2);
+    }
+
+    .project-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .project-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--grey-text);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .project-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .tech-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: #e0e0e0;
+    }
+
+    /* Meta Actions Layout */
+    .meta-actions-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    .project-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary-cyan);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .project-link i {
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover {
+      color: #ffffff;
+    }
+
+    .project-link:hover i {
+      transform: translate(3px, -3px);
+    }
+
+    .btn-pdf-download {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-pdf-download:hover {
+      background: var(--meta-accent);
+      border-color: var(--meta-accent);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(233, 30, 99, 0.2);
+    }
+
+    /* ==========================================
+       FOOTER STYLE
+       ========================================== */
+    #main-footer {
+      background-color: #030303; 
+      padding: 90px 0 35px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04); 
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-brand-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .footer-brand-title span { color: var(--primary-cyan); }
+    .footer-brand-desc {
+      color: #888888;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 380px;
+    }
+    
+    .footer-social-grid { display: flex; gap: 12px; }
+    .social-box {
+      width: 44px; height: 44px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .social-box:hover {
+      background: rgba(0, 188, 212, 0.08);
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+      transform: translateY(-3px);
+    }
+
+    .footer-section-title {
+      color: var(--primary-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #00ffaa;
+      background: rgba(0, 255, 170, 0.06);
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      background-color: #00ffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ffaa;
+      animation: pulse-dot 1.8s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #00ffaa; }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    .footer-nav-list { list-style: none; padding: 0; margin: 0; }
+    .footer-nav-list li { margin-bottom: 16px; }
+    .footer-nav-list a {
+      color: #999999; text-decoration: none;
+      font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .footer-nav-list a i {
+      font-size: 0.75rem; color: var(--primary-cyan);
+      transition: transform 0.25s ease;
+    }
+    .footer-nav-list a:hover { color: #ffffff; }
+    .footer-nav-list a:hover i { transform: translateX(3px); }
+
+    .contact-item-card { display: flex; gap: 15px; margin-bottom: 24px; align-items: flex-start; }
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-cyan); flex-shrink: 0;
+    }
+    .contact-card-info h5 { margin: 0 0 3px 0; color: #ffffff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-card-info a, .contact-card-info span { color: #999999; text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+    .contact-card-info a:hover { color: var(--primary-cyan); }
+
+    .newsletter-widget-box {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 14px; padding: 22px;
+    }
+    .newsletter-widget-box .form-control {
+      background: #0a0a0a !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;
+    }
+    .newsletter-widget-box .form-control::placeholder { color: #555555; }
+    .newsletter-widget-box .form-control:focus {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15) !important;
+    }
+    .newsletter-widget-box .btn-subscribe {
+      background: var(--primary-cyan); color: #000000;
+      width: 100%; border: none; padding: 12px; font-weight: 600;
+      border-radius: 8px; font-size: 0.95rem; margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+    .newsletter-widget-box .btn-subscribe:hover {
+      background: #0097a7;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-copyright-row {
+      text-align: center; margin-top: 70px; padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      color: #555555; font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fiza Zafar</a>
+        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="Services.html" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="Projects.html" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="projects-hero text-center">
+      <div class="container">
+        <h1 data-aos="fade-up">Selected <span>Digital Innovations</span></h1>
+        <p class="hero-desc" data-aos="fade-up" data-aos-delay="100">
+          A showcase of high-end web applications and high-converting marketing frameworks built with absolute precision and premium design layouts.
+        </p>
+
+        <div class="filter-container" data-aos="fade-up" data-aos-delay="200">
+          <button class="btn-filter active" onclick="filterProjects('all')">All Work</button>
+          <button class="btn-filter" onclick="filterProjects('frontend')">Frontend Engineering</button>
+          <button class="btn-filter" onclick="filterProjects('meta')">Meta Ad Campaigns</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-grid">
+      <div class="container">
+        <div class="row g-4">
+
+          <div class="col-lg-4 col-md-6 project-item frontend" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-visual">
+                <i class="fas fa-chart-line project-icon-glow"></i>
+              </div>
+              <div class="project-content">
+                <span class="project-badge badge-fe">Frontend Engineering</span>
+                <h3>Premium Admin Dashboard</h3>
+                <p>An immersive, enterprise-level control center featuring asynchronous data tables, real-time analytics widgets, and highly optimized fluid dark layouts.</p>
+                <div class="project-tech-tags">
+                  <span class="tech-tag">React.js</span>
+                  <span class="tech-tag">Chart.js</span>
+                  <span class="tech-tag">Tailwind CSS</span>
+                </div>
+                <a href="https://dashboard-admin-xi-liart.vercel.app" class="project-link">View Live<i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 project-item frontend" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card">
+              <div class="project-visual">
+                <i class="fas fa-wand-magic-sparkles project-icon-glow"></i>
+              </div>
+              <div class="project-content">
+                <span class="project-badge badge-fe">Frontend Engineering</span>
+                <h3>Personal Portfolio Website</h3>
+                <p>A sophisticated digital canvas highlighting ultra-smooth interface motion, rich typography styling, and personalized dark-mode branding accents.</p>
+                <div class="project-tech-tags">
+                  <span class="tech-tag">HTML5/CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">AOS Motion</span>
+                </div>
+                <a href="#" class="project-link">View Live<i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 project-item frontend" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-card">
+              <div class="project-visual">
+                <i class="fas fa-bag-shopping project-icon-glow"></i>
+              </div>
+              <div class="project-content">
+                <span class="project-badge badge-fe">Frontend Engineering</span>
+                <h3>High-End E-Commerce Hub</h3>
+                <p>A completely responsive digital storefront with seamless layout transformations, dynamic shopping flows, and refined presentation setups.</p>
+                <div class="project-tech-tags">
+                  <span class="tech-tag">Next.js</span>
+                  <span class="tech-tag">Redux Toolkit</span>
+                  <span class="tech-tag">Bootstrap 5</span>
+                </div>
+                <a href="#" class="project-link">View Live System <i class="fas fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 project-item meta" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-visual" style="background: linear-gradient(135deg, #0a0a0a 0%, #1c0a14 100%);">
+                <i class="fab fa-meta project-icon-glow" style="color: rgba(233, 30, 99, 0.15);"></i>
+              </div>
+              <div class="project-content">
+                <span class="project-badge badge-meta">Meta Ad Campaigns</span>
+                <h3>Apex Legacy Investor Acquisition</h3>
+                <p>Targeted investor acquisition framework deployed for Dubai Luxury Real Estate, engineering premium pipeline flows tailored for ultra-high-net-worth buyers.</p>
+                <div class="project-tech-tags">
+                  <span class="tech-tag">HNWI Targeting</span>
+                  <span class="tech-tag">Direct Response Copy</span>
+                  <span class="tech-tag">Lead Generation</span>
+                </div>
+                <div class="meta-actions-wrapper">
+                  <a href="#" class="project-link" style="color: var(--meta-accent);">View Strategy Case <i class="fas fa-arrow-up-right-from-square"></i></a>
+                  <a href="Meta Ads Report - Apex Client.pdf" download class="btn-pdf-download">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 project-item meta" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-card">
+              <div class="project-visual" style="background: linear-gradient(135deg, #0a0a0a 0%, #1c0a14 100%);">
+                <i class="fas fa-bullseye project-icon-glow" style="color: rgba(233, 30, 99, 0.15);"></i>
+              </div>
+              <div class="project-content">
+                <span class="project-badge badge-meta">Meta Ad Campaigns</span>
+                <h3>Vela Home Decor Optimization</h3>
+                <p>Advanced full-funnel scaling framework executed in the highly competitive US Home Decor market, driving a verified 4.5x Return on Ad Spend (ROAS).</p>
+                <div class="project-tech-tags">
+                  <span class="tech-tag">4.5x ROAS Structure</span>
+                  <span class="tech-tag">US E-Commerce</span>
+                  <span class="tech-tag">Account Restructuring</span>
+                </div>
+                <div class="meta-actions-wrapper">
+                  <a href="#" class="project-link" style="color: var(--meta-accent);">View Strategy Case <i class="fas fa-arrow-up-right-from-square"></i></a>
+                  <a href="Vela Home Decor.pdf" download class="btn-pdf-download">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="main-footer">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="footer-brand-title">Fiza <span>Zafar</span></h2>
+          <p class="footer-brand-desc">Empowering brands with high-performance web solutions. I turn complex ideas into elegant, functional, and user-friendly digital experiences.</p>
+          <div class="footer-social-grid">
+            <a href="#" class="social-box" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/fiza-zafar-a31183315" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-box" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-box" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+          <h3 class="footer-section-title">Sitemap</h3>
+          <div class="footer-nav-list">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Me</a></li>
+            <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="Projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+            <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          <h3 class="footer-section-title">
+            Connect 
+            <span class="status-badge"><span class="status-dot"></span>Available Remotely</span>
+          </h3>
+          
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-info">
+              <h5>Email</h5>
+              <a href="mailto:zafarfiza17@gmail.com">zafarfiza17@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-card-info">
+              <h5>Location</h5>
+              <span>Karachi, Pakistan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+          <h3 class="footer-section-title">Stay Updated</h3>
+          <div class="newsletter-widget-box">
+            <p class="text-secondary mb-3" style="font-size: 0.88rem; line-height: 1.5;">Subscribe to my newsletter for tech tips and project updates.</p>
+            <form action="#" onsubmit="event.preventDefault();">
+              <input type="email" class="form-control" placeholder="Email Address" required>
+              <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-copyright-row">
+        <p>&copy; <span id="current-year">2026</span> Fiza Zafar. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Client-side Filter Engine for Categories
+    function filterProjects(category) {
+      const buttons = document.querySelectorAll('.btn-filter');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if(event && event.target) {
+        event.target.classList.add('active');
+      }
+
+      const items = document.querySelectorAll('.project-item');
+      items.forEach(item => {
+        if (category === 'all') {
+          item.style.display = 'block';
+        } else {
+          if (item.classList.contains(category)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // Smart Auto Active Link Evaluator
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+      link.classList.remove('active'); 
+      const linkHref = link.getAttribute('href');
+      
+      if (currentPath === linkHref) {
+        link.classList.add('active');
+      } else if (linkHref === "Projects.html" && currentPath === "Projects.html") {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiza Zafar - Contact</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary-cyan: #00bcd4;
+      --dark-bg: #000000;
+      --light-text: #ffffff;
+      --grey-text: #b0b0b0;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       SIMPLE & PROFESSIONAL NAVBAR STYLING
+       ========================================== */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 0;
+      font-family: 'Inter', sans-serif; 
+    }
+    
+    .navbar-brand { 
+      font-weight: 600; 
+      font-size: 1.25rem; 
+      letter-spacing: -0.3px;
+      color: var(--primary-cyan) !important; 
+    }
+    
+    .nav-link { 
+      color: var(--grey-text) !important; 
+      margin: 0 12px; 
+      font-size: 0.9rem; 
+      font-weight: 500;    
+      letter-spacing: -0.1px;
+      transition: color 0.25s ease; 
+    }
+    
+    .nav-link:hover, .nav-link.active { 
+      color: var(--primary-cyan) !important; 
+    }
+
+    /* ==========================================
+       HYPER-MODERN ANIMATED CONTACT MAIN CONTENT
+       ========================================== */
+    .contact-hero-section {
+      padding: 150px 0 50px;
+      text-align: center;
+    }
+    .contact-hero-section h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+    }
+    .contact-hero-section h1 span {
+      color: var(--primary-cyan);
+      position: relative;
+    }
+    
+    /* Glassmorphic Animated Form Card */
+    .premium-contact-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 45px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+    .premium-contact-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -50%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+      z-index: 0; pointer-events: none;
+    }
+
+    /* Advanced Interactive Input Group (Floating effect) */
+    .input-animate-group {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .input-animate-group input, 
+    .input-animate-group textarea {
+      width: 100%;
+      padding: 16px 4px 10px;
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-size: 1rem;
+      outline: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transition: all 0.3s ease;
+    }
+    .input-animate-group label {
+      position: absolute;
+      left: 4px; top: 16px;
+      color: #666666;
+      font-size: 0.95rem;
+      font-weight: 400;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    /* Active & Focus states for labels and borders */
+    .input-animate-group input:focus ~ label,
+    .input-animate-group input:valid ~ label,
+    .input-animate-group textarea:focus ~ label,
+    .input-animate-group textarea:valid ~ label {
+      top: -10px;
+      font-size: 0.78rem;
+      color: var(--primary-cyan);
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    /* Bottom Accent Line Trace Animation */
+    .input-bar-line {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--primary-cyan);
+      transition: width 0.4s ease;
+    }
+    .input-animate-group input:focus ~ .input-bar-line,
+    .input-animate-group textarea:focus ~ .input-bar-line {
+      width: 100%;
+    }
+
+    /* Premium Magnetic Button Style */
+    .btn-magnetic-submit {
+      background: transparent;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
+      padding: 16px 40px;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-magnetic-submit i {
+      transition: transform 0.3s ease;
+    }
+    .btn-magnetic-submit:hover {
+      background: var(--primary-cyan);
+      color: #000000;
+      box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+      transform: translateY(-3px);
+    }
+    .btn-magnetic-submit:hover i {
+      transform: translateX(5px) rotate(-15deg);
+    }
+
+    /* Interactive Left Info Cards */
+    .modern-info-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      padding: 30px;
+      display: flex; gap: 20px;
+      align-items: center;
+      margin-bottom: 24px;
+      transition: all 0.4s ease;
+    }
+    .modern-info-card .card-icon-sphere {
+      width: 54px; height: 54px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-cyan); font-size: 1.25rem;
+      transition: all 0.4s ease;
+    }
+    .modern-info-card:hover {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(0, 188, 212, 0.2);
+      transform: translateY(-4px);
+    }
+    .modern-info-card:hover .card-icon-sphere {
+      background: var(--primary-cyan);
+      color: #000000;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+      transform: rotate(360deg);
+    }
+    .modern-info-card h4 {
+      margin: 0 0 4px; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 1px; color: #666666;
+    }
+    .modern-info-card p, .modern-info-card a {
+      margin: 0; font-size: 1.05rem; color: #ffffff; text-decoration: none;
+    }
+
+    /* ==========================================
+       PREMIUM MATCHING FOOTER STYLE
+       ========================================== */
+    #main-footer {
+      background-color: #030303; 
+      padding: 90px 0 35px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04); 
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-brand-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .footer-brand-title span { color: var(--primary-cyan); }
+    .footer-brand-desc {
+      color: #888888;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 380px;
+    }
+    
+    /* Social Grid Boxes */
+    .footer-social-grid { display: flex; gap: 12px; }
+    .social-box {
+      width: 44px; height: 44px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .social-box:hover {
+      background: rgba(0, 188, 212, 0.08);
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+      transform: translateY(-3px);
+    }
+
+    /* Section Headers */
+    .footer-section-title {
+      color: var(--primary-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Pulse Dot System */
+    .status-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #00ffaa;
+      background: rgba(0, 255, 170, 0.06);
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      background-color: #00ffaa;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ffaa;
+      animation: pulse-dot 1.8s infinite;
+    }
+    @keyframes pulse-dot {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px #00ffaa; }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    /* Sitemap link lists */
+    .footer-nav-list { list-style: none; padding: 0; margin: 0; }
+    .footer-nav-list li { margin-bottom: 16px; }
+    .footer-nav-list a {
+      color: #999999; text-decoration: none;
+      font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .footer-nav-list a i {
+      font-size: 0.75rem; color: var(--primary-cyan);
+      transition: transform 0.25s ease;
+    }
+    .footer-nav-list a:hover { color: #ffffff; }
+    .footer-nav-list a:hover i { transform: translateX(3px); }
+
+    /* Contact Details Grid Layout (Footer) */
+    .contact-item-card { display: flex; gap: 15px; margin-bottom: 24px; align-items: flex-start; }
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-cyan); flex-shrink: 0;
+    }
+    .contact-card-info h5 { margin: 0 0 3px 0; color: #ffffff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-card-info a, .contact-card-info span { color: #999999; text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+    .contact-card-info a:hover { color: var(--primary-cyan); }
+
+    /* Modern Form Newsletter Widget */
+    .newsletter-widget-box {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 14px; padding: 22px;
+    }
+    .newsletter-widget-box .form-control {
+      background: #0a0a0a !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      padding: 12px 16px; font-size: 0.9rem; border-radius: 8px;
+    }
+    .newsletter-widget-box .form-control::placeholder { color: #555555; }
+    .newsletter-widget-box .form-control:focus {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.15) !important;
+    }
+    .newsletter-widget-box .btn-subscribe {
+      background: var(--primary-cyan); color: #000000;
+      width: 100%; border: none; padding: 12px; font-weight: 600;
+      border-radius: 8px; font-size: 0.95rem; margin-top: 12px;
+      transition: all 0.3s ease;
+    }
+    .newsletter-widget-box .btn-subscribe:hover {
+      background: #0097a7;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .footer-copyright-row {
+      text-align: center; margin-top: 70px; padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      color: #555555; font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Fiza Zafar</a>
+        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="Services.html" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="Projects.html" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-hero-section" data-aos="fade-down">
+      <div class="container">
+        <h1>Let's Build Something <span>Great</span></h1>
+        <p class="text-secondary max-w-xl mx-auto" style="font-size: 0.95rem;">Have a concept, dynamic challenge, or complex scaling system? Reach out via direct channels or leave a message below.</p>
+      </div>
+    </section>
+
+    <section class="pb-5">
+      <div class="container">
+        <div class="row g-5 justify-content-between align-items-center">
+          
+          <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
+            <div class="modern-info-card">
+              <div class="card-icon-sphere"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4>Direct Email</h4>
+                <a href="mailto:zafarfiza17@gmail.com">zafarfiza17@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="modern-info-card">
+              <div class="card-icon-sphere"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <h4>Headquarters</h4>
+                <p>Karachi, Pakistan</p>
+              </div>
+            </div>
+
+            <div class="modern-info-card">
+              <div class="card-icon-sphere"><i class="fas fa-bolt"></i></div>
+              <div>
+                <h4>Current Status</h4>
+                <p>Open for Remote Work</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+            <div class="premium-contact-card">
+              <form action="#" onsubmit="event.preventDefault(); alert('Success! Your message has been routed successfully.');">
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    <div class="input-animate-group">
+                      <input type="text" required autocomplete="off">
+                      <span class="input-bar-line"></span>
+                      <label>Full Name</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="input-animate-group">
+                      <input type="email" required autocomplete="off">
+                      <span class="input-bar-line"></span>
+                      <label>Email Address</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-animate-group">
+                      <input type="text" required autocomplete="off">
+                      <span class="input-bar-line"></span>
+                      <label>Subject</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-animate-group" style="margin-bottom: 40px;">
+                      <textarea rows="4" required autocomplete="off"></textarea>
+                      <span class="input-bar-line"></span>
+                      <label>Your Message</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 text-end">
+                    <button type="submit" class="btn-magnetic-submit">
+                      Initiate Conversation <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="main-footer">
+    <div class="container">
+      <div class="row g-4 justify-content-between">
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+          <h2 class="footer-brand-title">Fiza <span>Zafar</span></h2>
+          <p class="footer-brand-desc">Empowering brands with high-performance web solutions. I turn complex ideas into elegant, functional, and user-friendly digital experiences.</p>
+          <div class="footer-social-grid">
+            <a href="#" class="social-box" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/fiza-zafar-a31183315" target="_blank" rel="noopener noreferrer" class="social-box" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-box" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-box" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+          <h3 class="footer-section-title">Sitemap</h3>
+          <ul class="footer-nav-list">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="About.html"><i class="fas fa-chevron-right"></i> About Me</a></li>
+            <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="Projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+            <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          <h3 class="footer-section-title">
+            Connect 
+            <span class="status-badge"><span class="status-dot"></span>Available Remotely</span>
+          </h3>
+          
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-card-info">
+              <h5>Email</h5>
+              <a href="mailto:zafarfiza17@gmail.com">zafarfiza17@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item-card">
+            <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-card-info">
+              <h5>Location</h5>
+              <span>Karachi, Pakistan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+          <h3 class="footer-section-title">Stay Updated</h3>
+          <div class="newsletter-widget-box">
+            <p class="text-secondary mb-3" style="font-size: 0.88rem; line-height: 1.5;">Subscribe to my newsletter for tech tips and project updates.</p>
+            <form action="#" onsubmit="event.preventDefault();">
+              <input type="email" class="form-control" placeholder="Email Address" required>
+              <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-copyright-row">
+        <p>&copy; <span id="current-year">2026</span> Fiza Zafar. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    
+    // Exact Runtime Copyright Year Evaluator
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Smart Auto Active Link Evaluator
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+      link.classList.remove('active'); 
+      const linkHref = link.getAttribute('href');
+      
+      if (currentPath === linkHref) {
+        link.classList.add('active');
+      } 
+      else if (currentPath === "" && linkHref === "index.html") {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
